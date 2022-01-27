@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="card shadow" style="width: 18rem;">
+            <img id="avatar" class="card-img-top" src="#" alt="Image"/>
+            <div class="card-body">
+                <h5 id="first_name" class="card-title"></h5>
+                <p id="last_name" class="card-text"></p>
+            </div>
+        </div>
+    </body>
+    <script>
+        const url = 'https://reqres.in/api/users/6';
+
+        function readJson() {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro HTTP: " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(json => {
+                    this.response = json;
+                    document.getElementById('avatar').src = response.data.avatar;
+                    document.getElementById('first_name').innerHTML = response.data.first_name;
+                    document.getElementById('last_name').innerHTML = response.data.last_name;
+                })
+                .catch(function () {
+                    this.dataError = true;
+                })
+        }
+
+        readJson();
+    </script>
+ 
+</html>
