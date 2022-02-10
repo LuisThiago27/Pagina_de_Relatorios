@@ -1,13 +1,13 @@
 /* global fetch */
 
 //função para obter a foto do banco de dados
-async function obtFoto (matrID){
+async function obtFoto (secaoID,matrID){
 	var myHeaders = new Headers();
 	myHeaders.append("Content-Type", "application/xml");
 	validateForm();
-	matrID = document.querySelector('#matr').value;
-	const tokID = document.querySelector('#token').value;
-	var raw = `matr=${matrID}&token=${tokID}`;
+	secaoID = document.querySelector('#secao').value;
+        matrID = document.querySelector('#matr').value;
+	var raw = `secao=${secaoID}&matr=${matrID}`;
 	
 
     
@@ -19,7 +19,7 @@ async function obtFoto (matrID){
 	};
 	
 	//var baseurl = "http://10.1.1.2:8080/SatWebService/api/executasvc/obterFoto";
-	  var baseurl = "https://mobile.sasw.com.br/SatWebServiceHomolog/api/executasvc/obterFoto";
+	  var baseurl = "https://mobile.sasw.com.br/SatWebServiceHomolog/api/executasvc/obterFuncion?";
 	
 	fetch(baseurl, requestOptions)
 	.then(response => response.text())
@@ -33,28 +33,25 @@ async function obtFoto (matrID){
   
 
   function populateHeader(jsonObj) {
-	var myH1 = jsonObj.funcion.matr;  
-	var imgpath = jsonObj.funcion.faceid;
-	var vnome = jsonObj.funcion.nome;
-        var vcod = jsonObj.funcion.codigo;
-	document.getElementById("matr").innerHTML = myH1.replace('.0', '');
+	var myH1 = jsonObj.pstserv.secao;  
+	var vnome = jsonObj.pstserv.nome;
+        var vcod = jsonObj.pstserv.cidade;
+        var vmatr = jsonObj.pstserv.funcion.matr;
+        var vmnome = jsonObj.pstserv.funcion.nome;
+	document.getElementById("secao").innerHTML = myH1.replace('.0', '');
 	document.getElementById("nome").innerHTML = vnome;
-        document.getElementById("codigo").innerHTML = vcod.replace('.0', '');
-	if (imgpath == "" || imgpath == null){
-	  imgpath = "/images/FotoND.jpg";
-	} else {
-	  document.getElementById("imgsrv").src = imgpath;
-	  loadCamera();
-	  //document.getElementById("imageRead").addEventListener("click", document.getElementById("imgsrv").src, false);
-	}
+        document.getElementById("cidade").innerHTML = vcod;
+        document.getElementById("matr").innerHTML = vmatr;
+        document.getElementById("mnome").innerHTML = vmnome;
+	
 	
   
   }
 
   function validateForm() {
-	var a = document.querySelector('#matr').value;
+	var a = document.querySelector('#secao').value;
 	var b = "";//document.querySelector('#token').value;
-	if (a == null || a == "") {
+	if (a === null || a === "") {
 	  alert("MATRICULA E TOKEN NECESSARIOS");
 	  return false;
 	}
