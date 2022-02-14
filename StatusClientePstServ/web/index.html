@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>TODO supply a title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/23e52faa1b.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <nav class="navbar navbar-light " style="background-color: #f0f0f0;">
+        <div class="container-fluid">
+            <a class="navbar-brand">Relatórios</a>
+            <input type="date" id="data" value="2022-01-25" />
+            <button class="btn btn-outline-success" type="submit">Voltar</button>
+        </div>
+    </nav>
+
+    <div id="control">
+        <p></p>
+        <form method="post"  action="">
+            <input placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" style="margin-left: 2%;" />
+
+
+
+            <div class="card" style="width: 96%; margin: 1% 2% 1% 2%;">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card" style="height: 64vh;">
+                                <div class="card-body">
+                                    <table>
+                                        <tr>
+                                            <td><img src="images/logosasw.jpg" alt="" width="150" /></td>
+                                            <td>
+                                                <h5 class="card-title" id="Nred"></h5>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <hr />
+                                    <table>
+                                        <tr>
+                                            <td style="float:left !important;">
+                                                <img src="images/mapa.jpg" width="200" height="150" />
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>Cidade:</strong><label id="cidade"></label>
+                                                </p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>Estado:</strong><label id="estado"></label>
+                                                </p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>Endereço:</strong><label
+                                                        id="endereco"></label></p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>Bairro:</strong><label id="bairro"></label>
+                                                </p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>Latitude/Longitude:</strong> <label
+                                                        id="latitude"></label><label id="longitude"></label></p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>CEP:</strong><label id="cep"></label></p>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card" style="border-radius: 10px; box-shadow: 3px 3px 3px 3px #f2f2f2;">
+                                <div class="card-body">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <h5>Funcionários</h5>
+                                            </td>
+                                            <td>
+                                                <label class="batida-entrada"
+                                                    style="width: 120px !important; background-color: green; margin-left: 300%;
+                                                   border-radius: 30px; text-align: center; color: white; font-weight: bold !important">Entrada</label>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="card" style="overflow: hidden; overflow-y: scroll; height: 50vh;">
+                                <div class="card-body">
+                                    <div id="myt"></div>
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <!--<div class="card">
+                            <div class="card-body">
+
+                                <table> 
+                                    <thead>
+                                        <tr>
+                                            <th style="float:left !important; border: 2px solid #ddd; border-radius: 50%">
+                                                <img src="images/perfil.jpg" width="60" height="60" style="border-radius: 80%" />
+                                            </th>    
+                                            <td style="float:left !important; text-align: left">
+                                                <b class="card-text">Matrícula: 18290 </b>- ESTHER MASSABANE MYNSSEN
+                                            </td><br/>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>Função: </strong> Estagiário(a) </p>
+                                            </td><br/>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="float:left !important; text-align: left; margin-left: 13%">
+                                                <b class="card-text">Hora Entrada: </b> 09:01 
+                                            </td>
+                                            <td style="float:left !important; margin-left: 2%">
+                                                <b class="card-text">Hora Saída </b>15:02 
+                                            </td>
+
+                                        </tr>
+                                    </thead> 
+                                </table> 
+                            </div>
+                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+        <label for="imageRead" style="margin-left: 2%;">
+            <!--<input type="button" id="imageUpload">Enviar</input>-->
+            <button onclick="obtFoto()" id="imageRead"> Enviar </button>
+            <!--button onclick="obtFoto()">teste</button>-->
+        </label>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
