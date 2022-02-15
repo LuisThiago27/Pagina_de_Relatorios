@@ -4,14 +4,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>TODO supply a title</title>
+    <title>Posto de Serviço</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/23e52faa1b.js" crossorigin="anonymous"></script>
-    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAHm-oYNilwgF3yuvOibuG-PE0ldjU-XQ"></script>
-       
+    <style type="text/css">
+        html { height: 50% }
+        body { height: 50%; margin: 0; padding: 0 }
+        #map_canvas { height: 50% }
+      </style>
+      <script type="text/javascript" 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAHm-oYNilwgF3yuvOibuG-PE0ldjU-XQ">
+    </script>
+    
+    
 </head>
 
 <body id="home">
@@ -19,25 +27,26 @@
         <div class="container-fluid">
             <a class="navbar-brand">Relatórios</a>
             <input type="date" id="data" value="2022-02-15" />
-            <input placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" />
-            <label for="imageRead">
+            <input placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" style="margin-left: 2%;" />
+            <label for="imageRead" style="margin-left: 2%;">
                 <!--<input type="button" id="imageUpload">Enviar</input>-->
-                <button onclick="obtFoto()" id="imageRead" class="btn btn-outline-secondary"> Enviar </button>
+                <button onclick="obtFoto()" id="imageRead" class="btn btn-outline-secondary"> Buscar </button>
                 <!--button onclick="obtFoto()">teste</button>-->
             </label>
             <button class="btn btn-outline-success" type="submit">Voltar</button>
         </div>
     </nav>
+    
 
     <div id="control">
-        <p></p>
-        <form method="post"  action="">
+        <form method="post" action="">
             <div class="card" style="width: 96%; margin: 1% 2% 1% 2%;">
                 <div class="card-body">
-                    <div class="row"> 
+
+                    <div class="row">
                         <div class="col-sm-6">
                             <div class="card" style="height: 64vh;">
-                                <div class="card-body" style="border-radius: 10px; box-shadow: 3px 3px 3px 3px #f2f2f2;">
+                                <div class="card-body">
                                     <table>
                                         <tr>
                                             <td><img src="images/logosasw.jpg" alt="" width="150" /></td>
@@ -46,34 +55,42 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <hr />
+                                    <hr/>
                                     <table>
-                                        <tr>
-                                            <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Cidade:</strong><label id="cidade"></label>
+                                        <tr style="font-size: 15px;">
+                                            <td style="float:left !important; text-align: left; display: flex;">
+                                                <p class="card-text"><strong>Cidade: </strong><label id="cidade"></label>
                                                 </p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Estado:</strong><label id="estado"></label>
+                                                <p class="card-text"><strong>&nbsp;Estado: </strong><label id="estado"></label>
                                                 </p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Endereço:</strong><label
+                                                <p class="card-text"><strong>&nbsp;Endereço: </strong><label
                                                         id="endereco"></label></p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Bairro:</strong><label id="bairro"></label>
+                                                <p class="card-text"><strong>&nbsp;Bairro: </strong><label id="bairro"></label>
                                                 </p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Latitude/Longitude:</strong> <label
+                                                <p class="card-text"><strong>Latitude/Longitude: </strong> <label
                                                         id="latitude"></label><label id="longitude"></label></p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>CEP:</strong><label id="cep"></label></p>
+                                                <p class="card-text"><strong>&nbsp;Local: </strong><label id="local"></label></p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>CEP: </strong><label id="cep"></label></p>
                                             </td>
                                         </tr>
-                                        <div id="map_canvas" style="width:100%; height:50%"></div>
+                                        <tr>
+                                            <label style="background-color: steelblue; color: #FFF; width: 100%; text-align: center; padding: 3px; font-weight: bold; margin: 0px; font-size: 10pt"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Localização</label>
+                                            <div id="map_canvas" style="width: 100%; height: 50%"></div>
+                                            
+                                        </tr>
+                                        
                                     </table>
                                 </div>
                             </div>
@@ -89,21 +106,21 @@
                                             <td>
                                                 <label class="batida-entrada"
                                                     style="width: 120px !important; background-color: green; margin-left: 300%;
-                                                   border-radius: 40px; text-align: center; color: white; font-weight: bold !important">Apresentação</label>
+                                                   border-radius: 30px; text-align: center; color: white; font-weight: bold !important">Apresentação</label>
                                             </td>
                                         </tr>
 
                                     </table>
                                 </div>
                             </div>
-                            <br>
+                            <br/>
                             <div class="card" style="overflow: hidden; overflow-y: scroll; height: 50vh;">
                                 <div class="card-body">
                                     <div id="myt"></div>
                                 </div>
                             </div>
 
-                            <br />
+                            <br/>
 
                             <!--<div class="card">
                             <div class="card-body">
@@ -140,7 +157,10 @@
 
         </form>
 
+        
+        
     </div>
+
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

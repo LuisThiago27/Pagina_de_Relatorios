@@ -39,8 +39,8 @@ function populateHeader(jsonObj) {
     var vnred = jsonObj.pstserv.Nred;
     var vbairro = jsonObj.pstserv.bairro;
     var vlatitude = jsonObj.pstserv.latitude;
-    var vlatitude = jsonObj.pstserv.latitude;
     var vlongitude = jsonObj.pstserv.longitude;
+    var vlocal = jsonObj.pstserv.local;
     var vcep = jsonObj.pstserv.cep;
     var vmatr0 = jsonObj.pstserv.funcion[1].nome;
     
@@ -137,6 +137,7 @@ function populateHeader(jsonObj) {
     document.getElementById("bairro").innerHTML = vbairro;
     document.getElementById("latitude").innerHTML = vlatitude;
     document.getElementById("longitude").innerHTML = vlongitude;
+    document.getElementById("local").innerHTML = vlocal;
     document.getElementById("cep").innerHTML = vcep;
     document.getElementById("nome").innerHTML = vnome;
     document.getElementById("matr0").innerHTML = vmatr0;
@@ -155,15 +156,16 @@ function validateForm() {
     }
 }  
 
-      
-        type="text/javascript"
-        function initialize() {
-            var mapOptions = {
-            center: new google.maps.LatLng(-7.121973,-34.870233),
-            zoom: 18,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("map_canvas"),
-                mapOptions);
-        }  
-       document.onload = initialize();
+
+function initialize() {
+    
+    var mapOptions = {
+    center: new google.maps.LatLng(-7.121973, -34.870233),
+    zoom: 18,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        mapOptions);
+
+}
+document.onload = initialize();
