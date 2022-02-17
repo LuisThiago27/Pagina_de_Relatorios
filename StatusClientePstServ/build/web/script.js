@@ -33,11 +33,16 @@ async function obtFoto(secaoID) {
 
 function populateHeader(jsonObj) {
     var myH1 = jsonObj.pstserv.secao;
-    var vnome = jsonObj.pstserv.Nred;
-    var vcod = jsonObj.pstserv.local;
+    var vcid = jsonObj.pstserv.cidade;
+    var vest = jsonObj.pstserv.estado;
     var vend = jsonObj.pstserv.endereco;
+    var vnred = jsonObj.pstserv.Nred;
+    var vbairro = jsonObj.pstserv.bairro;
+    var vlatitude = jsonObj.pstserv.latitude;
     var vlatitude = jsonObj.pstserv.latitude;
     var vlongitude = jsonObj.pstserv.longitude;
+    var vnome = jsonObj.pstserv.nome;
+    var vcep = jsonObj.pstserv.cep;
     var vmatr0 = jsonObj.pstserv.funcion[1].nome;
     
     
@@ -87,6 +92,14 @@ function populateHeader(jsonObj) {
                                                 <i class="fa fa-id-card-o" style="width:20px !important; text-align:center !important;"></i>
                                                 ${jsonObj.pstserv.funcion[i].descricao}
                                             </td><br/>
+                                            <td style="float:left !important; text-align: left">
+                                                <i class="fa fa-certificate" style="width:20px !important;"></i>
+                                                Cargo: ${jsonObj.pstserv.funcion[i].cargo}
+                                            </td>
+                                            <td style="float:left !important; text-align: left; ">
+                                            <i class="fa fa-certificate" style="width:20px !important;"></i>
+                                            Horário: ${jsonObj.pstserv.funcion[i].hora1}
+                                        </td>
 
                                         </tr>
                                         </thead>
@@ -127,11 +140,15 @@ function populateHeader(jsonObj) {
     document.body.appendChild(table);
 */
     document.getElementById("secao").innerHTML = myH1.replace('.0', '');
-    document.getElementById("Nred").innerHTML = vnome;
-    document.getElementById("local").innerHTML = vcod;
+    document.getElementById("cidade").innerHTML = vcid;
+    document.getElementById("estado").innerHTML = vest;
     document.getElementById("endereco").innerHTML = vend;
+    document.getElementById("Nred").innerHTML = vnred;
+    document.getElementById("bairro").innerHTML = vbairro;
     document.getElementById("latitude").innerHTML = vlatitude;
     document.getElementById("longitude").innerHTML = vlongitude;
+    document.getElementById("nome").innerHTML = vnome;
+    document.getElementById("cep").innerHTML = vcep;
     document.getElementById("matr0").innerHTML = vmatr0;
 
 

@@ -1,6 +1,7 @@
-/* global fetch, vmatr, vmatr0 */
+const vlatitude ="";
+const vlongitude = "";
 
-//função para obter a foto do banco de dados
+
 async function obtFoto(secaoID) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/xml");
@@ -38,9 +39,9 @@ function populateHeader(jsonObj) {
     var vend = jsonObj.pstserv.endereco;
     var vnred = jsonObj.pstserv.Nred;
     var vbairro = jsonObj.pstserv.bairro;
-    var vlatitude = jsonObj.pstserv.latitude;
-    var vlatitude = jsonObj.pstserv.latitude;
-    var vlongitude = jsonObj.pstserv.longitude;
+    const vlatitude = jsonObj.pstserv.latitude;
+    const vlongitude = jsonObj.pstserv.longitude;
+    var vlocal = jsonObj.pstserv.local;
     var vcep = jsonObj.pstserv.cep;
     var vmatr0 = jsonObj.pstserv.funcion[1].nome;
     
@@ -66,31 +67,42 @@ function populateHeader(jsonObj) {
         //console.log(typeof(jsonObj.pstserv.funcion.length));
         table.innerHTML += row;
     }*/
+    var p = document.getElementById('p');
+    p.innerHTML = '';
+
+    var par = `<div class="card" style="text-align: center;">
+    <p><center><strong>Quantidade de funcionários: ${jsonObj.pstserv.funcion.length}</strong> </center></p>
+    </div>`;
+    p.innerHTML += par;
     
     var table = document.getElementById('myt');
     table.innerHTML = '';
     for (var i = 0; i < jsonObj.pstserv.funcion.length; i++) {
         
-        var row = `<div class="card" style=" background-color:  azure; border: thin solid steelblue; margin-top: 2%; border-radius: 6px; >
+        var row = `    
+                        <div class="card" style=" background-color:  azure; border: thin solid steelblue; margin-top: 2%; border-radius: 6px; >
+                        
                             <div class="card-body" >
                                 <table>
                                     <thead>
                                         <tr>
+                                            
                                             <th style="float:left !important; border: 2px solid #ddd; border-radius: 50%; margin: 1%">
-                                                <img src="images/FotoND.jpg" width="60" height="60" id="imgsrv" style="border-radius: 80%;" />
-                                            </th>    
+                                                <img src="${jsonObj.pstserv.funcion[i].faceid}" width="60" height="60" id="imgsrv" style="border-radius: 80%;" />
+                                            </th>
                                             <td style="float:left !important; text-align: left; margin-top: 1%">
                                                 <i class="fa fa-certificate" style="width:20px !important;"></i>
                                                 Nome: ${jsonObj.pstserv.funcion[i].nome}
-                                            </td>
-                                            <td style="float:left !important; text-align: left; margin-top: 1%">
-                                                <i class="fa fa-id-card-o" style="width:20px !important; text-align:center !important;"></i>
-                                                ${jsonObj.pstserv.funcion[i].descricao}
                                             </td>
                                             <td style="float:left !important; text-align: left;  margin-top: 1%">
                                                 <i class="fa fa-certificate" style="width:20px !important;"></i>
                                                 Cargo: ${jsonObj.pstserv.funcion[i].cargo}
                                             </td>
+                                            <td style="float:left !important; text-align: left; margin-top: 1%">
+                                                <i class="fa fa-id-card-o" style="width:20px !important; text-align:center !important;"></i>
+                                                ${jsonObj.pstserv.funcion[i].descricao}
+                                            </td>
+                                            
                                             <td style="float:left !important; text-align: left;  margin-top: 1%">
                                                 <i class="fa fa-clock-o" style="width:20px !important; text-align:center !important;"></i>
                                                 Horário: ${jsonObj.pstserv.funcion[i].hora1}
@@ -137,6 +149,7 @@ function populateHeader(jsonObj) {
     document.getElementById("bairro").innerHTML = vbairro;
     document.getElementById("latitude").innerHTML = vlatitude;
     document.getElementById("longitude").innerHTML = vlongitude;
+    document.getElementById("local").innerHTML = vlocal;
     document.getElementById("cep").innerHTML = vcep;
     document.getElementById("nome").innerHTML = vnome;
     document.getElementById("matr0").innerHTML = vmatr0;
@@ -150,16 +163,22 @@ function validateForm() {
     var a = document.querySelector('#secao').value;
     var b = "";//document.querySelector('#token').value;
     if (a === null || a === "") {
-        alert("MATRICULA E TOKEN NECESSARIOS");
+        alert("A SESSÃO É NECESSÁRIA");
         return false;
     }
 }  
 
-let map;
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
+function initialize() {
+
+    var mapOptions = {
+    //center: new google.maps.LatLng(-7.121973, -34.870233),
+    center: new google.maps.LatLng(vlatitude, vlongitude),
+    zoom: 18,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        mapOptions);
+
 }
+document.onload = initialize();

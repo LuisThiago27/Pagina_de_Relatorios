@@ -4,31 +4,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>TODO supply a title</title>
+    <title>Posto de Serviço</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/23e52faa1b.js" crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly" async></script>
+    <style type="text/css">
+        html { height: 50% }
+        body { height: 50%; margin: 0; padding: 0 }
+        #map_canvas { height: 50% }
+      </style>
+      <script type="text/javascript" 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAHm-oYNilwgF3yuvOibuG-PE0ldjU-XQ">
+    </script>
+    
+    
 </head>
 
 <body id="home">
     <nav class="navbar navbar-light " style="background-color: #f0f0f0;">
         <div class="container-fluid">
-            <a class="navbar-brand">Relatórios</a>
-            <input type="date" id="data" value="2022-01-25" />
+            <a class="navbar-brand">Relatório do Posto de Serviço</a>
+            <input type="date" id="data" value="2022-02-15" />
+            
+            <div class="d-flex">
+                <input class="form-control me-2" type="search" id="secao" placeholder="Search" value="999.00001.001A" aria-label="Search">
+              <label for="imageRead" style="margin-left: 2%;">
+                    <!--<input type="button" id="imageUpload">Enviar</input>-->
+                    <button onclick="obtFoto()" id="imageRead" type="submit" class="btn btn-outline-secondary"> Buscar </button>
+                    <!--button onclick="obtFoto()">teste</button>-->
+                </label>
+            </div>
+
+
             <button class="btn btn-outline-success" type="submit">Voltar</button>
         </div>
     </nav>
+    
 
     <div id="control">
-        <p></p>
         <form method="post" action="">
-            <input placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" style="margin-left: 2%;" />
-
-
-
             <div class="card" style="width: 96%; margin: 1% 2% 1% 2%;">
                 <div class="card-body">
 
@@ -44,39 +60,42 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <hr />
+                                    <hr/>
                                     <table>
-                                        <tr>
-                                            <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Cidade:</strong><label id="cidade"></label>
+                                        <tr style="font-size: 15px;">
+                                            <td style="float:left !important; text-align: left; display: flex;">
+                                                <p class="card-text"><strong>Cidade: </strong><label id="cidade"></label>
                                                 </p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Estado:</strong><label id="estado"></label>
+                                                <p class="card-text"><strong>&nbsp;Estado: </strong><label id="estado"></label>
                                                 </p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Endereço:</strong><label
+                                                <p class="card-text"><strong>&nbsp;Endereço: </strong><label
                                                         id="endereco"></label></p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Bairro:</strong><label id="bairro"></label>
+                                                <p class="card-text"><strong>&nbsp;Bairro: </strong><label id="bairro"></label>
                                                 </p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>Latitude/Longitude:</strong> <label
+                                                <p class="card-text"><strong>Latitude/Longitude: </strong> <label
                                                         id="latitude"></label><label id="longitude"></label></p>
                                             </td>
                                             <td style="float:left !important; text-align: left">
-                                                <p class="card-text"><strong>CEP:</strong><label id="cep"></label></p>
+                                                <p class="card-text"><strong>&nbsp;Local: </strong><label id="local"></label></p>
+                                            </td>
+                                            <td style="float:left !important; text-align: left">
+                                                <p class="card-text"><strong>CEP: </strong><label id="cep"></label></p>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <label style="background-color: steelblue; color: #FFF; width: 93%; text-align: center; padding: 5px; font-weight: bold; margin: 0px; font-size: 10pt"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Localização</label>
-                                                <img src="images/mapa.jpg" width="550" height="200" style="margin: 0%;"/>
-                                            </td>
+                                            <label style="background-color: steelblue; color: #FFF; width: 100%; text-align: center; padding: 3px; font-weight: bold; margin: 0px; font-size: 10pt"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Localização</label>
+                                            <div id="map_canvas" style="width: 100%; height: 50%"></div>
+                                            
                                         </tr>
+                                        
                                     </table>
                                 </div>
                             </div>
@@ -92,25 +111,26 @@
                                             <td>
                                                 <label class="batida-entrada"
                                                     style="width: 120px !important; background-color: green; margin-left: 300%;
-                                                   border-radius: 30px; text-align: center; color: white; font-weight: bold !important">Entrada</label>
+                                                   border-radius: 30px; text-align: center; color: white; font-weight: bold !important">Apresentação</label>
                                             </td>
                                         </tr>
 
                                     </table>
                                 </div>
                             </div>
-                            <br>
+                            <br/>
+                            
                             <div class="card" style="overflow: hidden; overflow-y: scroll; height: 50vh;">
+                                <div id="p"></div>
                                 <div class="card-body">
                                     <div id="myt"></div>
                                 </div>
                             </div>
 
-                            <br />
+                            <br/>
 
                             <!--<div class="card">
                             <div class="card-body">
-
                                 <table> 
                                     <thead>
                                         <tr>
@@ -123,7 +143,6 @@
                                             <td style="float:left !important; text-align: left">
                                                 <p class="card-text"><strong>Função: </strong> Estagiário(a) </p>
                                             </td><br/>
-
                                         </tr>
                                         <tr>
                                             <td style="float:left !important; text-align: left; margin-left: 13%">
@@ -132,7 +151,6 @@
                                             <td style="float:left !important; margin-left: 2%">
                                                 <b class="card-text">Hora Saída </b>15:02 
                                             </td>
-
                                         </tr>
                                     </thead> 
                                 </table> 
@@ -142,17 +160,12 @@
                     </div>
                 </div>
             </div>
-
+            
 
         </form>
 
-        <label for="imageRead" style="margin-left: 2%;">
-            <!--<input type="button" id="imageUpload">Enviar</input>-->
-            <button onclick="obtFoto()" id="imageRead"> Enviar </button>
-            <!--button onclick="obtFoto()">teste</button>-->
-        </label>
-
-        <div id="map"></div>
+        
+        
     </div>
 
 
