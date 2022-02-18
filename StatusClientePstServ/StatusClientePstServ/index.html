@@ -26,25 +26,22 @@
     <nav class="navbar navbar-light " style="background-color: #f0f0f0;">
         <div class="container-fluid">
             <a class="navbar-brand">Relatórios</a>
-            <input type="date" id="data" value="2022-02-15" />
+            <input type="date" id="dtbatida" />
             <input placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" style="margin-left: 2%;" />
             <label for="imageRead" style="margin-left: 2%;">
                 <!--<input type="button" id="imageUpload">Enviar</input>-->
                 <button onclick="obtFoto()" id="imageRead" class="btn btn-outline-secondary"> Enviar </button>
                 <!--button onclick="obtFoto()">teste</button>-->
             </label>
-            <button class="btn btn-outline-success" type="submit">Voltar</button>
         </div>
     </nav>
     
 
     <div id="control">
         <p></p>
-        <form method="post" action="">
-            
-
-
-
+        <form method="post" onsubmit="return validateForm()" action="">
+            <input placeholder="Token" type="text" id="token" value="B8489FF7205E3217B4E043D70FF9848B" style="margin-left: 2%;" />
+            <input placeholder="Filial" type="text" id="codfil" style="margin-left: 2%;" />
             <div class="card" style="width: 96%; margin: 1% 2% 1% 2%;">
                 <div class="card-body">
 
@@ -120,6 +117,7 @@
                             </div>
                             <br>
                             <div class="card" style="overflow: hidden; overflow-y: scroll; height: 50vh;">
+                                <div id="p"></div>
                                 <div class="card-body">
                                     <div id="myt"></div>
                                 </div>
