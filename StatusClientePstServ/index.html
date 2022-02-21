@@ -26,25 +26,30 @@
     <nav class="navbar navbar-light " style="background-color: #f0f0f0;">
         <div class="container-fluid">
             <a class="navbar-brand">Relatórios</a>
-            <input type="date" id="data" value="2022-02-15" />
-            <input placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" style="margin-left: 2%;" />
+            <input class="form-control" type="date" id="databatida" style="width: 15%;"/>
+            <input class="form-control" placeholder="Matrícula" type="text" id="secao" value="999.00001.001A" style="margin-left: 2%; width: 15%" />
             <label for="imageRead" style="margin-left: 2%;">
                 <!--<input type="button" id="imageUpload">Enviar</input>-->
                 <button onclick="obtFoto()" id="imageRead" class="btn btn-outline-secondary"> Enviar </button>
                 <!--button onclick="obtFoto()">teste</button>-->
             </label>
-            <button class="btn btn-outline-success" type="submit">Voltar</button>
         </div>
     </nav>
     
 
     <div id="control">
         <p></p>
-        <form method="post" action="">
-            
-
-
-
+        <form method="post" onsubmit="return validateForm()" action="">
+            <div class="row" style="width: 100%;">
+            <select class="form-select" aria-label="Default select example" id="token" style="width: 20%; margin-left: 3%;">
+                <option selected>Token</option>
+                <option value="B51B12E1B8F095C6C04A8BD15E21B15B">Brasifot</option>
+                <option value="B8489FF7205E3217B4E043D70FF9848B">SASEX</option>
+                <option value="BC40AE8F3DD6806BE65C0AB448EA04CB">5 Estrelas</option>
+            </select>
+            <!--<input placeholder="Token" type="text" id="token" value="B51B12E1B8F095C6C04A8BD15E21B15B" style="margin-left: 2%;" />-->
+            <input placeholder="Filial" class="form-control" type="text" id="codfil" style="width: 20%; margin-left: 2%;"/>
+            </div>
             <div class="card" style="width: 96%; margin: 1% 2% 1% 2%;">
                 <div class="card-body">
 
@@ -120,6 +125,7 @@
                             </div>
                             <br>
                             <div class="card" style="overflow: hidden; overflow-y: scroll; height: 50vh;">
+                                <div id="p"></div>
                                 <div class="card-body">
                                     <div id="myt"></div>
                                 </div>
@@ -169,7 +175,7 @@
         
     </div>
 
-
+    <script src="moment.js"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
